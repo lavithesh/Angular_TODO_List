@@ -1,7 +1,11 @@
 
 <div class="card mt-5">
-    <h3 class="card-header p-3">Example </h3>
+    <h3 class="card-header p-3">CRUD </h3>
     <div class="card-body">
+        <div class="m-1">
+            <a [routerLink]="['/posts/create']" class="btn btn-success btn-sm">Create Posts </a>
+        </div>
+
         <table class="table table-bordered table-striped">
             <thead>
                 <tr>
@@ -12,13 +16,15 @@
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td>1</td>
-                    <td>Test</td>
-                    <td>Test</td>
+                <tr *ngFor="let post of posts">
+
+                    <td>{{ post.id }}</td>
+                    <td>{{ post.title }}</td>
+                    <td>{{ post.body}}</td>
                     <td>
-                        <button class="btn btn-primary btn-sm">Edit</button>
-                        <button class="btn btn-danger btn-sm">Delete</button>
+                        <a [routerLink]="['/posts',post.id]" class="btn btn-info btn-sm m-1">Show</a>
+                        <a [routerLink]="['/posts',post.id,'edit']" class="btn btn-primary btn-sm m-1">Edit</a>
+                        <button (click)="deletePost(post.id)" class="btn btn-danger btn-sm">Delete</button>
 
                     </td>
                 </tr>
